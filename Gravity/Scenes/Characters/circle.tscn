@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://cq5ruhiito0qd"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/circle.gd" id="1_2qjed"]
+[ext_resource type="Texture2D" uid="uid://dqy6awa8mprf1" path="res://Assets/Sprites/G_blue/blue_body_circle.png" id="2_6o101"]
+[ext_resource type="Texture2D" uid="uid://becsmipml45f6" path="res://Assets/Sprites/G_green/green_body_circle.png" id="3_ou14v"]
+[ext_resource type="Texture2D" uid="uid://buot44kfu17fa" path="res://Assets/Sprites/G_pink/pink_body_circle.png" id="4_a3hq2"]
+[ext_resource type="Texture2D" uid="uid://dooe37ow8gc4n" path="res://Assets/Sprites/G_purple/purple_body_circle.png" id="5_tf4eb"]
+[ext_resource type="Texture2D" uid="uid://b5r1hjdivjvbk" path="res://Assets/Sprites/G_red/red_body_circle.png" id="6_7223d"]
+[ext_resource type="Texture2D" uid="uid://bxv7vqssguvdn" path="res://Assets/Sprites/G_yellow/yellow_body_circle.png" id="7_qfe4q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8pujk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6o101")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ou14v")
+}],
+"loop": true,
+"name": &"Green",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a3hq2")
+}],
+"loop": true,
+"name": &"Pink",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tf4eb")
+}],
+"loop": true,
+"name": &"Purple",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7223d")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qfe4q")
+}],
+"loop": true,
+"name": &"Yellow",
+"speed": 1.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bjcpu"]
+radius = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hf01w"]
+
+[node name="Circle" type="RigidBody2D"]
+input_pickable = true
+script = ExtResource("1_2qjed")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8pujk")
+animation = &"Yellow"
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bjcpu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Internal_security" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_hf01w")
+debug_color = Color(0.890196, 0, 0, 0.419608)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
