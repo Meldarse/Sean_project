@@ -1,11 +1,21 @@
 extends Area2D
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
+	$CollisionShape2D.disabled = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_timer_timeout():
+		show()
+		$AnimationPlayer.play("Appear")
+		$CollisionShape2D.disabled = false
+		await $AnimationPlayer.animation_finished
+		$AnimationPlayer.play("Idle")
+
+func _on_body_entered(_body):
+	get_tree().queue_delete(_body)
+	print("AaA")

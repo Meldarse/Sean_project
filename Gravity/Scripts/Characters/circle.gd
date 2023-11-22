@@ -21,8 +21,6 @@ func _on_input_event(viewport, event, shape_idx):
 		if event.is_released():
 			selected = false
 
-
-
-func _on_area_2d_area_entered(area):
-	if area is StaticBody2D:
+func _on_area_2d_body_entered(body):
+	if body is StaticBody2D:
 		selected = false

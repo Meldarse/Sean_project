@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cq5ruhiito0qd"]
+[gd_scene load_steps=12 format=3 uid="uid://cq5ruhiito0qd"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/circle.gd" id="1_2qjed"]
 [ext_resource type="Texture2D" uid="uid://dqy6awa8mprf1" path="res://Assets/Sprites/G_blue/blue_body_circle.png" id="2_6o101"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dooe37ow8gc4n" path="res://Assets/Sprites/G_purple/purple_body_circle.png" id="5_tf4eb"]
 [ext_resource type="Texture2D" uid="uid://b5r1hjdivjvbk" path="res://Assets/Sprites/G_red/red_body_circle.png" id="6_7223d"]
 [ext_resource type="Texture2D" uid="uid://bxv7vqssguvdn" path="res://Assets/Sprites/G_yellow/yellow_body_circle.png" id="7_qfe4q"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m1xv0"]
+bounce = 0.8
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8pujk"]
 animations = [{
@@ -65,7 +68,10 @@ radius = 80.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_hf01w"]
 
 [node name="Circle" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
 input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_m1xv0")
 script = ExtResource("1_2qjed")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
@@ -83,4 +89,4 @@ shape = SubResource("CircleShape2D_hf01w")
 debug_color = Color(0.890196, 0, 0, 0.419608)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
