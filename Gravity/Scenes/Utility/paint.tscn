@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5od6j523x8sc"]
+
+[ext_resource type="Script" path="res://Scripts/Utility/paint.gd" id="1_n86f6"]
+
+[node name="Paint" type="Node2D"]
+script = ExtResource("1_n86f6")

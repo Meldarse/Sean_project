@@ -11,6 +11,7 @@ func _process(delta):
 	if selected:
 		freeze = true
 		global_transform.origin = lerp(global_position, get_global_mouse_position(), 30 * delta)
+		scale = Vector2(0.75, 0.75)
 	else:
 		freeze = false
 		
