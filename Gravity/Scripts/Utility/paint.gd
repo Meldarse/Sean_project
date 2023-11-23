@@ -6,4 +6,4 @@ func _process(_delta):
 
 func _draw():
 	for point in Global.painting_place:
-		draw_circle(point, 30, Global.color_blue)
+		draw_circle(point, 80, Global.color_blue)
