@@ -22,6 +22,7 @@ func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventScreenTouch:
 		if  event.is_pressed():
 			selected = true
+			Global.painting_place.clear()
 
 		if event.is_released():
 			selected = false
