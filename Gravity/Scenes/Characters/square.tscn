@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://cie5eu5mus126"]
+
+[ext_resource type="Texture2D" uid="uid://31n85t3xu4vq" path="res://Assets/Sprites/G_blue/blue_body_square.png" id="1_07tgp"]
+[ext_resource type="Script" path="res://Scripts/Characters/square.gd" id="1_c1ni0"]
+[ext_resource type="Texture2D" uid="uid://bgrg4wlxekxwc" path="res://Assets/Sprites/G_green/green_body_square.png" id="2_w268o"]
+[ext_resource type="Texture2D" uid="uid://mlobf311tere" path="res://Assets/Sprites/G_pink/pink_body_square.png" id="3_04bp7"]
+[ext_resource type="Texture2D" uid="uid://h7af4xjlhul0" path="res://Assets/Sprites/G_purple/purple_body_square.png" id="4_sgj8i"]
+[ext_resource type="Texture2D" uid="uid://b0nfi24apobrv" path="res://Assets/Sprites/G_red/red_body_square.png" id="5_2d28l"]
+[ext_resource type="Texture2D" uid="uid://lie0ore3e0v3" path="res://Assets/Sprites/G_yellow/yellow_body_square.png" id="6_jff2b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_62xxb"]
+bounce = 0.4
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ctcqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_07tgp")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w268o")
+}],
+"loop": true,
+"name": &"Green",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_04bp7")
+}],
+"loop": true,
+"name": &"Pink",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sgj8i")
+}],
+"loop": true,
+"name": &"Purple",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2d28l")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jff2b")
+}],
+"loop": true,
+"name": &"Yellow",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkhbi"]
+
+[node name="square" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+input_pickable = true
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_62xxb")
+script = ExtResource("1_c1ni0")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ctcqr")
+animation = &"Blue"
+
+[node name="Shape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(75, -75, 79, -70, 80, -65, 80, 64, 78, 71, 75, 75, 71, 78, 65, 80, -65, 80, -71, 78, -75, 75, -78, 70, -80, 64, -80, -66, -77.9963, -71.4045, -75, -75, -72, -78, -67, -80, 64, -80, 69, -79)
+
+[node name="Internal_security" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Internal_security"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_tkhbi")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="Internal_security" to="." method="_on_area_2d_body_entered"]

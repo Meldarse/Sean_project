@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bxv7vqssguvdn" path="res://Assets/Sprites/G_yellow/yellow_body_circle.png" id="7_qfe4q"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m1xv0"]
-bounce = 0.8
+bounce = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8pujk"]
 animations = [{
@@ -76,17 +76,17 @@ script = ExtResource("1_2qjed")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8pujk")
-animation = &"Yellow"
+animation = &"Blue"
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bjcpu")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Internal_security" type="Area2D" parent="."]
 
-[node name="Internal_security" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Internal_security"]
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_hf01w")
 debug_color = Color(0.890196, 0, 0, 0.419608)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Internal_security" to="." method="_on_area_2d_body_entered"]
