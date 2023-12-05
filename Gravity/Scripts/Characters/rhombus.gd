@@ -4,10 +4,9 @@ var selected: bool = false
 
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if selected:
 		freeze = true
@@ -17,13 +16,15 @@ func _process(delta):
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventScreenTouch:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if  event.is_pressed():
 			selected = true
 
 		if event.is_released():
 			selected = false
 
-func _on_area_2d_body_entered(body):
+
+#No salir de la pantalla
+func _on_internal_security_body_entered(body):
 	if body is StaticBody2D:
 		selected = false

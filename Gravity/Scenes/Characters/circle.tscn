@@ -11,7 +11,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m1xv0"]
 bounce = 1.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8pujk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_acl5j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -62,10 +62,10 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bjcpu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y41d1"]
 radius = 80.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hf01w"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0r6y2"]
 
 [node name="Circle" type="RigidBody2D"]
 collision_layer = 2
@@ -75,18 +75,18 @@ physics_material_override = SubResource("PhysicsMaterial_m1xv0")
 script = ExtResource("1_2qjed")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_8pujk")
+sprite_frames = SubResource("SpriteFrames_acl5j")
 animation = &"Blue"
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_bjcpu")
+shape = SubResource("CircleShape2D_y41d1")
 
 [node name="Internal_security" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Internal_security"]
 scale = Vector2(3, 3)
-shape = SubResource("CircleShape2D_hf01w")
+shape = SubResource("CircleShape2D_0r6y2")
 debug_color = Color(0.890196, 0, 0, 0.419608)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="body_entered" from="Internal_security" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Internal_security" to="." method="_on_internal_security_body_entered"]

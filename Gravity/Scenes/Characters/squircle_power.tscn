@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2xjxmaetagjx"]
+
+[ext_resource type="Texture2D" uid="uid://cnxphu83eekmt" path="res://Assets/Sprites/G_blue/blue_body_squircle.png" id="1_a2j6h"]
+[ext_resource type="Script" path="res://Scripts/Characters/squircle_power.gd" id="1_gi1sk"]
+[ext_resource type="Texture2D" uid="uid://clyb0bhwybgk5" path="res://Assets/Sprites/G_green/green_body_squircle.png" id="2_ywohh"]
+[ext_resource type="Texture2D" uid="uid://dhmat7wopavpo" path="res://Assets/Sprites/G_pink/pink_body_squircle.png" id="3_5k1ie"]
+[ext_resource type="Texture2D" uid="uid://cvil5nbnkeq4i" path="res://Assets/Sprites/G_purple/purple_body_squircle.png" id="4_3am88"]
+[ext_resource type="Texture2D" uid="uid://cuq2fxsv0u44w" path="res://Assets/Sprites/G_red/red_body_squircle.png" id="5_chq4c"]
+[ext_resource type="Texture2D" uid="uid://bd7nh5dq1wka5" path="res://Assets/Sprites/G_yellow/yellow_body_squircle.png" id="6_eolas"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xkuqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a2j6h")
+}],
+"loop": true,
+"name": &"Blue",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ywohh")
+}],
+"loop": true,
+"name": &"Green",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5k1ie")
+}],
+"loop": true,
+"name": &"Pink",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3am88")
+}],
+"loop": true,
+"name": &"Purple",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_chq4c")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eolas")
+}],
+"loop": true,
+"name": &"Yellow",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g113h"]
+
+[node name="Squircle_power" type="RigidBody2D"]
+script = ExtResource("1_gi1sk")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xkuqd")
+animation = &"Blue"
+
+[node name="Shape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(33, -78, 44, -75, 60, -68, 71, -55, 77, -39, 79, -25, 80, -4, 78.9, 24, 77, 40, 73, 51, 69, 58, 59.9, 69, 48, 74, 38, 77, 23, 80, -25, 80, -44, 76, -62, 67, -70, 56, -75, 47, -78, 33, -79, 22, -80, 0, -79, -23, -74.3, -47, -67, -60, -62, -66, -53, -72, -39, -77, -31, -79, -23, -80, 22, -80)
+
+[node name="Internal_security" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Internal_security"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_g113h")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="Internal_security" to="." method="_on_internal_security_body_entered"]

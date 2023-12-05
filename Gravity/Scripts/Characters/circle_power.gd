@@ -4,13 +4,17 @@ var selected: bool = false
 
 
 func _ready():
-	pass
+	pass 
 
 
 func _process(delta):
 	if selected:
 		freeze = true
-		global_transform.origin = lerp(global_position, get_global_mouse_position(), 30 * delta)
+		global_transform.origin = lerp(global_position, get_global_mouse_position(), 45 * delta)
+		#Agregar a la lista para pintar
+		if $Body.global_position not in Global.painting_place:
+			Global.painting_place.append($Body.global_position)
+
 	else:
 		freeze = false
 

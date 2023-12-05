@@ -11,13 +11,12 @@ func _process(delta):
 	if selected:
 		freeze = true
 		global_transform.origin = lerp(global_position, get_global_mouse_position(), 60 * delta)
-		scale = Vector2(1.5, 1.5)
 	else:
 		freeze = false
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventScreenTouch:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if  event.is_pressed():
 			selected = true
 
@@ -25,6 +24,7 @@ func _on_input_event(viewport, event, shape_idx):
 			selected = false
 
 
-func _on_area_2d_body_entered(body):
+#No salir de la pantalla
+func _on_internal_security_body_entered(body):
 	if body is StaticBody2D:
 		selected = false

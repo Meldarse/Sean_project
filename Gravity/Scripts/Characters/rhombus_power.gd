@@ -10,7 +10,7 @@ func _ready():
 func _process(delta):
 	if selected:
 		freeze = true
-		global_transform.origin = lerp(global_position, get_global_mouse_position(), 30 * delta)
+		global_transform.origin = lerp(global_position, get_global_mouse_position(), 45 * delta)
 	else:
 		freeze = false
 
@@ -25,6 +25,6 @@ func _on_input_event(viewport, event, shape_idx):
 
 
 #No salir de la pantalla
-func _on_internal_security_body_entered(body):
+func _on_internal_security_body_entered(body): 
 	if body is StaticBody2D:
 		selected = false
