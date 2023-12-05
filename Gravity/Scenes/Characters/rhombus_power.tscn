@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v2vqfxxnigpl"]
+[gd_scene load_steps=17 format=3 uid="uid://v2vqfxxnigpl"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/rhombus_power.gd" id="1_01nol"]
 [ext_resource type="Texture2D" uid="uid://bp6b5td8k6tkd" path="res://Assets/Sprites/G_blue/blue_body_rhombus.png" id="1_nmjy8"]
@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://c0bfinvy67qgy" path="res://Assets/Sprites/G_purple/purple_body_rhombus.png" id="4_pe721"]
 [ext_resource type="Texture2D" uid="uid://c76qk3xm04225" path="res://Assets/Sprites/G_red/red_body_rhombus.png" id="5_c0ro7"]
 [ext_resource type="Texture2D" uid="uid://c8jhopxbujnhr" path="res://Assets/Sprites/G_yellow/yellow_body_rhombus.png" id="6_ekfmf"]
+[ext_resource type="Script" path="res://Scripts/Utility/Magnetic_area.gd" id="8_mlpib"]
+[ext_resource type="Texture2D" uid="uid://08fhrhk5a3ly" path="res://Assets/Particles/circle_01.png" id="8_trmf6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cnyry"]
-bounce = 0.6
+bounce = 0.4
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1be2v"]
 animations = [{
@@ -64,7 +66,24 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifdrn"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlcxr"]
+radius = 150.0
+
+[sub_resource type="Curve" id="Curve_kac3h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.77515, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mwnsd"]
+curve = SubResource("Curve_kac3h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_brnd7"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mwnsd")
+
 [node name="Rhombus_power" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_cnyry")
 script = ExtResource("1_01nol")
@@ -82,5 +101,21 @@ polygon = PackedVector2Array(4, -79, 19, -71, 67, -24, 79, -5, 79, 6, 59.8, 32, 
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_ifdrn")
 
+[node name="Magnetic_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("8_mlpib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnetic_area"]
+shape = SubResource("CircleShape2D_qlcxr")
+
+[node name="attraction" type="GPUParticles2D" parent="Magnetic_area"]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_brnd7")
+texture = ExtResource("8_trmf6")
+lifetime = 0.8
+local_coords = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="input_event" from="." to="Magnetic_area" method="_on_rhombus_power_input_event"]
 [connection signal="body_entered" from="Internal_security" to="." method="_on_internal_security_body_entered"]

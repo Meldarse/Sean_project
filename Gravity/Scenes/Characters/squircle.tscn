@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bd7nh5dq1wka5" path="res://Assets/Sprites/G_yellow/yellow_body_squircle.png" id="6_cg70m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d1h0d"]
-bounce = 0.8
+bounce = 0.5
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eu2sf"]
 animations = [{

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c8jhopxbujnhr" path="res://Assets/Sprites/G_yellow/yellow_body_rhombus.png" id="7_sr4s1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_skgcj"]
-bounce = 0.6
+bounce = 0.4
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_flvld"]
 animations = [{

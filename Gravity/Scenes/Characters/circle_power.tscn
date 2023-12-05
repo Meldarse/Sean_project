@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bxv7vqssguvdn" path="res://Assets/Sprites/G_yellow/yellow_body_circle.png" id="7_bq3gx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2iod6"]
-bounce = 1.0
+bounce = 0.6
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mu822"]
 animations = [{

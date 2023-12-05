@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://lie0ore3e0v3" path="res://Assets/Sprites/G_yellow/yellow_body_square.png" id="6_jff2b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_62xxb"]
-bounce = 0.4
+bounce = 0.2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ctcqr"]
 animations = [{
