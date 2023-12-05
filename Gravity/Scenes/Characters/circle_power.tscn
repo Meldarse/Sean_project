@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d10m3j4mvp7e5"]
+[gd_scene load_steps=12 format=3 uid="uid://d10m3j4mvp7e5"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/circle_power.gd" id="1_7nx3x"]
 [ext_resource type="Texture2D" uid="uid://dqy6awa8mprf1" path="res://Assets/Sprites/G_blue/blue_body_circle.png" id="2_76aps"]
@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://b5r1hjdivjvbk" path="res://Assets/Sprites/G_red/red_body_circle.png" id="6_6ir5x"]
 [ext_resource type="Texture2D" uid="uid://bxv7vqssguvdn" path="res://Assets/Sprites/G_yellow/yellow_body_circle.png" id="7_bq3gx"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dn1tn"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2iod6"]
+bounce = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mu822"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -59,26 +62,30 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nhmnr"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_suxxh"]
 radius = 80.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bvtw1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ehdsf"]
 
 [node name="Circle_power" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_2iod6")
 script = ExtResource("1_7nx3x")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_dn1tn")
+sprite_frames = SubResource("SpriteFrames_mu822")
 animation = &"Blue"
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_nhmnr")
+shape = SubResource("CircleShape2D_suxxh")
 
 [node name="Internal_security" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Internal_security"]
 scale = Vector2(3, 3)
-shape = SubResource("CircleShape2D_bvtw1")
+shape = SubResource("CircleShape2D_ehdsf")
 debug_color = Color(0.890196, 0, 0, 0.419608)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

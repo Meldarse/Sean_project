@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2xjxmaetagjx"]
+[gd_scene load_steps=11 format=3 uid="uid://b2xjxmaetagjx"]
 
 [ext_resource type="Texture2D" uid="uid://cnxphu83eekmt" path="res://Assets/Sprites/G_blue/blue_body_squircle.png" id="1_a2j6h"]
 [ext_resource type="Script" path="res://Scripts/Characters/squircle_power.gd" id="1_gi1sk"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cvil5nbnkeq4i" path="res://Assets/Sprites/G_purple/purple_body_squircle.png" id="4_3am88"]
 [ext_resource type="Texture2D" uid="uid://cuq2fxsv0u44w" path="res://Assets/Sprites/G_red/red_body_squircle.png" id="5_chq4c"]
 [ext_resource type="Texture2D" uid="uid://bd7nh5dq1wka5" path="res://Assets/Sprites/G_yellow/yellow_body_squircle.png" id="6_eolas"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_a5ehp"]
+bounce = 0.8
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xkuqd"]
 animations = [{
@@ -62,6 +65,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g113h"]
 
 [node name="Squircle_power" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 7
+input_pickable = true
+mass = 1.5
+physics_material_override = SubResource("PhysicsMaterial_a5ehp")
 script = ExtResource("1_gi1sk")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
@@ -77,5 +85,6 @@ polygon = PackedVector2Array(33, -78, 44, -75, 60, -68, 71, -55, 77, -39, 79, -2
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_g113h")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="Internal_security" to="." method="_on_internal_security_body_entered"]

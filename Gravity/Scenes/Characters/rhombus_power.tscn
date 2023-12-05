@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://v2vqfxxnigpl"]
+[gd_scene load_steps=11 format=3 uid="uid://v2vqfxxnigpl"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/rhombus_power.gd" id="1_01nol"]
 [ext_resource type="Texture2D" uid="uid://bp6b5td8k6tkd" path="res://Assets/Sprites/G_blue/blue_body_rhombus.png" id="1_nmjy8"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://c0bfinvy67qgy" path="res://Assets/Sprites/G_purple/purple_body_rhombus.png" id="4_pe721"]
 [ext_resource type="Texture2D" uid="uid://c76qk3xm04225" path="res://Assets/Sprites/G_red/red_body_rhombus.png" id="5_c0ro7"]
 [ext_resource type="Texture2D" uid="uid://c8jhopxbujnhr" path="res://Assets/Sprites/G_yellow/yellow_body_rhombus.png" id="6_ekfmf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cnyry"]
+bounce = 0.6
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1be2v"]
 animations = [{
@@ -62,6 +65,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifdrn"]
 
 [node name="Rhombus_power" type="RigidBody2D"]
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_cnyry")
 script = ExtResource("1_01nol")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]

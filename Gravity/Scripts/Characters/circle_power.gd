@@ -1,28 +1,34 @@
 extends RigidBody2D
 
 var selected: bool = false
+var current_scale = Global.scale_states[1]
 
 
 func _ready():
-	pass 
+	Global.scale_up.connect(increases_scale)
+	Global.scale_down.connect(reduces_scale)
 
 
 func _process(delta):
+	$Body.scale = current_scale
+	$Shape.scale = current_scale
+	$Internal_security.scale = current_scale
 	if selected:
-		freeze = true
+		sleeping = true
 		global_transform.origin = lerp(global_position, get_global_mouse_position(), 45 * delta)
 		#Agregar a la lista para pintar
 		if $Body.global_position not in Global.painting_place:
 			Global.painting_place.append($Body.global_position)
 
 	else:
-		freeze = false
+		sleeping = false
 
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if  event.is_pressed():
 			selected = true
+			Global.painting_place.clear()
 
 		if event.is_released():
 			selected = false
@@ -32,3 +38,22 @@ func _on_input_event(viewport, event, shape_idx):
 func _on_internal_security_body_entered(body):
 	if body is StaticBody2D:
 		selected = false
+
+func increases_scale(body: RigidBody2D):
+	if self == body:
+		if Global.scale_states.find(current_scale) > 1:
+			pass
+		else:
+			current_scale = Global.scale_states[Global.scale_states.find(current_scale) + 1]
+	else:
+		pass
+
+
+func reduces_scale(body: RigidBody2D):
+	if self == body:
+		if Global.scale_states.find(current_scale) < 1:
+			pass
+		else:
+			current_scale = Global.scale_states[Global.scale_states.find(current_scale) - 1]
+	else:
+		pass

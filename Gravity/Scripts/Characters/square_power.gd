@@ -4,15 +4,16 @@ var selected: bool = false
 
 
 func _ready():
-	pass
+	contact_monitor = true
+	max_contacts_reported = 5
 
 
 func _process(delta):
 	if selected:
-		freeze = true
+		sleeping = true
 		global_transform.origin = lerp(global_position, get_global_mouse_position(), 30 * delta)
 	else:
-		freeze = false
+		sleeping = false
 
 
 func _on_input_event(viewport, event, shape_idx):
@@ -28,3 +29,11 @@ func _on_input_event(viewport, event, shape_idx):
 func _on_internal_security_body_entered(body):
 	if body is StaticBody2D:
 		selected = false
+
+
+func _on_body_entered(body):
+	if selected:
+		if body is RigidBody2D:
+			Global.scale_down.emit(body)
+		else:
+			pass

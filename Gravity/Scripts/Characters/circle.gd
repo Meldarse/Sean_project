@@ -8,11 +8,11 @@ func _ready():
 
 func _process(delta):
 	if selected:
-		freeze = true
+		sleeping = true
 		global_transform.origin = lerp(global_position, get_global_mouse_position(), 75 * delta)
 
 	else:
-		freeze = false
+		sleeping = false
 
 
 #Coger y soltar
@@ -20,7 +20,6 @@ func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if  event.is_pressed():
 			selected = true
-			Global.painting_place.clear()
 
 		if event.is_released():
 			selected = false

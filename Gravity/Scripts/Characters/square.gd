@@ -9,10 +9,10 @@ func _ready():
 
 func _process(delta):
 	if selected:
-		freeze = true
+		sleeping = true
 		global_transform.origin = lerp(global_position, get_global_mouse_position(), 30 * delta)
 	else:
-		freeze = false
+		sleeping = false
 
 
 func _on_input_event(viewport, event, shape_idx):
