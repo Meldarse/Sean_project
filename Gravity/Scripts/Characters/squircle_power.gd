@@ -48,20 +48,18 @@ func _on_body_entered(body):
 			pass
 
 func increases_scale(body: RigidBody2D):
+	var index = Global.scale_states.find(current_scale)
 	if self == body:
-		if Global.scale_states.find(current_scale) > 1:
-			pass
+		if index > 1:
+			return
 		else:
-			current_scale = Global.scale_states[Global.scale_states.find(current_scale) + 1]
-	else:
-		pass
+			current_scale = Global.scale_states[index + 1]
 
 
 func reduces_scale(body: RigidBody2D):
+	var index = Global.scale_states.find(current_scale)
 	if self == body:
-		if Global.scale_states.find(current_scale) < 1:
-			pass
+		if index < 1:
+			return
 		else:
-			current_scale = Global.scale_states[Global.scale_states.find(current_scale) - 1]
-	else:
-		pass
+			current_scale = Global.scale_states[index - 1]
