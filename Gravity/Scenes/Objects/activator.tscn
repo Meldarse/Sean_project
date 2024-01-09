@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://4qqrr6q6gwsc"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/activator.gd" id="1_8xjey"]
+[ext_resource type="Texture2D" uid="uid://dsameb2poo7p4" path="res://Assets/Sprites/Objects/tile_grey.png" id="1_w6mjc"]
+[ext_resource type="Texture2D" uid="uid://dwi8mc3nh8tcj" path="res://Assets/Sprites/Objects/tile_exclamation.png" id="2_j41lu"]
+[ext_resource type="AudioStream" uid="uid://cr30i3ievfgh4" path="res://Assets/SFX/tone1.ogg" id="4_tknfh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2mm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_w6mjc")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j41lu")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}]
+
+[node name="Activator" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -82.0
+offset_top = -79.0
+offset_right = 77.0
+offset_bottom = 82.0
+script = ExtResource("1_8xjey")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(80, 80)
+sprite_frames = SubResource("SpriteFrames_j2mm3")
+animation = &"Off"
+
+[node name="touch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_tknfh")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

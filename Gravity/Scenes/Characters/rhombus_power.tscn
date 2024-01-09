@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://v2vqfxxnigpl"]
+[gd_scene load_steps=20 format=3 uid="uid://v2vqfxxnigpl"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/rhombus_power.gd" id="1_01nol"]
 [ext_resource type="Texture2D" uid="uid://bp6b5td8k6tkd" path="res://Assets/Sprites/G_blue/blue_body_rhombus.png" id="1_nmjy8"]
@@ -81,6 +81,79 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_mwnsd")
 
+[sub_resource type="Animation" id="Animation_5ajsb"]
+resource_name = "Bye"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.001, 0.001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_vcfkq"]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u3ct1"]
+_data = {
+"Bye": SubResource("Animation_5ajsb"),
+"RESET": SubResource("Animation_vcfkq")
+}
+
 [node name="Rhombus_power" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 7
@@ -115,6 +188,11 @@ process_material = SubResource("ParticleProcessMaterial_brnd7")
 texture = ExtResource("8_trmf6")
 lifetime = 0.8
 local_coords = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u3ct1")
+}
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="input_event" from="." to="Magnetic_area" method="_on_rhombus_power_input_event"]

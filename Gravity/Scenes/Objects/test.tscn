@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://c82fx3a03qear"]
+
+[ext_resource type="PackedScene" uid="uid://bp5vp7oj6hy1l" path="res://Scenes/Objects/wall.tscn" id="1_ffpcg"]
+[ext_resource type="Script" path="res://Scripts/Objects/test.gd" id="1_xd8wi"]
+[ext_resource type="PackedScene" uid="uid://h7iaw4dm8iyy" path="res://Scenes/Objects/floor.tscn" id="2_q1c72"]
+[ext_resource type="PackedScene" uid="uid://c5od6j523x8sc" path="res://Scenes/Utility/paint.tscn" id="7_gu8py"]
+[ext_resource type="AudioStream" uid="uid://db5mm5b4xdh6x" path="res://Assets/Music/hexahop-1.wav" id="8_ktokb"]
+[ext_resource type="PackedScene" uid="uid://4qqrr6q6gwsc" path="res://Scenes/Objects/activator.tscn" id="8_qlvp4"]
+[ext_resource type="PackedScene" uid="uid://dxf2eedrl0uks" path="res://Scenes/Objects/portal.tscn" id="9_jmy33"]
+
+[node name="Test" type="Node"]
+script = ExtResource("1_xd8wi")
+
+[node name="Paint" parent="." instance=ExtResource("7_gu8py")]
+
+[node name="Activator" parent="." instance=ExtResource("8_qlvp4")]
+offset_left = 480.0
+offset_top = 921.0
+offset_right = 639.0
+offset_bottom = 1082.0
+
+[node name="Portal" parent="." instance=ExtResource("9_jmy33")]
+position = Vector2(381, 181)
+
+[node name="Wall_ left" type="Node" parent="."]
+
+[node name="Wall" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 80)
+rotation = 1.5708
+
+[node name="Wall2" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 240)
+rotation = 1.5708
+
+[node name="Wall3" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 401)
+rotation = 1.5708
+
+[node name="Wall4" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 561)
+rotation = 1.5708
+
+[node name="Wall5" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 721)
+rotation = 1.5708
+
+[node name="Wall6" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 881)
+rotation = 1.5708
+
+[node name="Wall7" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 1041)
+rotation = 1.5708
+
+[node name="Wall8" parent="Wall_ left" instance=ExtResource("1_ffpcg")]
+position = Vector2(0, 1201)
+rotation = 1.5708
+
+[node name="Wall_ right" type="Node" parent="."]
+
+[node name="Wall" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 80)
+rotation = 4.71239
+
+[node name="Wall2" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 240)
+rotation = 4.71239
+
+[node name="Wall3" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 400)
+rotation = 4.71239
+
+[node name="Wall4" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 560)
+rotation = 4.71239
+
+[node name="Wall5" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 721)
+rotation = 4.71239
+
+[node name="Wall6" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 881)
+rotation = 4.71239
+
+[node name="Wall7" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 1042)
+rotation = 4.71239
+
+[node name="Wall8" parent="Wall_ right" instance=ExtResource("1_ffpcg")]
+position = Vector2(728, 1202)
+rotation = 4.71239
+
+[node name="Floors" type="Node" parent="."]
+
+[node name="Floor" parent="Floors" instance=ExtResource("2_q1c72")]
+position = Vector2(44, 1300)
+
+[node name="Floor2" parent="Floors" instance=ExtResource("2_q1c72")]
+position = Vector2(204, 1300)
+
+[node name="Floor3" parent="Floors" instance=ExtResource("2_q1c72")]
+position = Vector2(364, 1300)
+
+[node name="Floor4" parent="Floors" instance=ExtResource("2_q1c72")]
+position = Vector2(524, 1300)
+
+[node name="Floor5" parent="Floors" instance=ExtResource("2_q1c72")]
+position = Vector2(684, 1300)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ktokb")
+volume_db = -8.0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8tgtsshrangb"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/bullet.gd" id="1_062cd"]
+[ext_resource type="Texture2D" uid="uid://c7cuym7ejlewx" path="res://Assets/Sprites/Objects/slash_03.png" id="1_rumef"]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_062cd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rumef")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(3, -186.5, 15, -181.9, 27, -168.5, 42, -138.4, 50, -112.4, 59, -71.2, 60, -63, 63, 20, 55, 92, 38.2, 148, 24.8, 172, 8.39999, 186, -9.8, 190, -21.8, 190, -25, 181.5, -7, 149.5, 7, 113.7, 17, 74, 23, 26.7, 23, -27, 17.2, -72, 9.29999, -105, -4.39999, -144, -24, -179.5, -23, -186.5)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
